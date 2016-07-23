@@ -45,7 +45,7 @@ class App extends Component {
   }
 
   clearText() {
-    return this.setState({ title: "", link: "" })
+    this.setState({ title: "", link: "" })
   }
 
   fetchLocalAndSetState() {
