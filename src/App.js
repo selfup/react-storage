@@ -5,8 +5,8 @@ import './App.css'
 class App extends Component {
   constructor() {
     super()
-    this.lspi    = new Lspi()
-    this.state   = {
+    this.lspi  = new Lspi()
+    this.state = {
       title: "",
       link: "",
       bookmark: {},
@@ -77,10 +77,7 @@ class App extends Component {
           onChange={this.handleLinkChange}
         />
         <br/><br/>
-        <button 
-          id="submit-button" 
-          onClick={this.handleBookmarkChange}
-        >
+        <button id="submit-button" onClick={this.handleBookmarkChange}>
           Submit
         </button>
       </div>
