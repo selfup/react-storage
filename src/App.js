@@ -5,17 +5,20 @@ import './App.css'
 class App extends Component {
   constructor() {
     super()
+    
     this.lspi  = new Lspi()
+
     this.state = {
       title: "",
       link: "",
       bookmark: {},
       bookmarks: this.lspi.getObjectRecord("bookmarks")
     }
-    this.handleTitleChange     = this.handleTitleChange.bind(this)
-    this.handleLinkChange      = this.handleLinkChange.bind(this)
-    this.handleBookmarkChange  = this.handleBookmarkChange.bind(this)
-    this.handleClearBookmarks  = this.handleClearBookmarks.bind(this)
+    
+    this.handleTitleChange    = this.handleTitleChange.bind(this)
+    this.handleLinkChange     = this.handleLinkChange.bind(this)
+    this.handleBookmarkChange = this.handleBookmarkChange.bind(this)
+    this.handleClearBookmarks = this.handleClearBookmarks.bind(this)
   }
 
   componentWillMount() {
