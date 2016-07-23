@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import Storage from './storage.js'
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Lspi from 'lspi'
+import logo from './logo.svg'
+import './App.css'
 
 class App extends Component {
   constructor() {
     super()
-    this.storage = new Storage()
+    this.lspi = new Lspi()
     this.state   = {
       hello: "Hellooo"
     }
@@ -14,7 +14,7 @@ class App extends Component {
 
   handleChange(event) {
     this.setState({ hello: event.target.value })
-    this.storage.setLocal(event.target.value)
+    this.lspi.setStringRecord("hello", event.target.value)
   }
 
   componentWillMount() {
@@ -22,7 +22,7 @@ class App extends Component {
   }
 
   fetchLocalAndSetState(fn) {
-    const local = this.storage.getLocal()
+    const local = this.lspi.getStringRecord("hello")
     if (local !== null) this.setState({ hello: local })
   }
 
@@ -31,7 +31,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>Welcome to React Storage!</h2>
         </div>
         <br/>
         <input
