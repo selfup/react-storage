@@ -29,7 +29,7 @@ class App extends Component {
     this.setState({ link: event.target.value })
   }
 
-  handleBookmarkChange(event) {
+  handleBookmarkChange() {
     this.setState({ bookmark:
       { title: this.state.title, link: this.state.link }
     }, () => {
