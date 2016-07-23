@@ -39,8 +39,9 @@ class App extends Component {
   }
 
   updateBookmarks() {
-    let bookmarks = this.lspi.getObjectRecord("bookmarks")
-    bookmarks.push(this.state.bookmark)
+    const bookmarks = [
+      ...this.lspi.getObjectRecord("bookmarks"), this.state.bookmark
+    ]
     this.lspi.setRecord("bookmarks", bookmarks)
   }
 
