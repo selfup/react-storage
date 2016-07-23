@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import Storage from './storage.js'
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
   constructor() {
     super()
+    this.storage = new Storage()
     this.state = {
       hello: "Hellooo"
     }
@@ -12,23 +14,15 @@ class App extends Component {
 
   handleChange(event) {
     this.setState({ hello: event.target.value })
-    this.setLocal(event.target.value)
+    this.storage.setLocal(event.target.value)
   }
 
   componentWillMount() {
-    this.fetchLocal()
+    this.fetchLocalAndSetState()
   }
 
-  setLocal(string) {
-    localStorage.setItem("hello", string)
-  }
-
-  getLocal() {
-    return localStorage.getItem("hello")
-  }
-
-  fetchLocal() {
-    const local = this.getLocal()
+  fetchLocalAndSetState(fn) {
+    const local = this.storage.getLocal()
     if (local !== null) this.setState({ hello: local })
   }
 
