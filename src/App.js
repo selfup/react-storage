@@ -12,9 +12,10 @@ class App extends Component {
       bookmark: {},
       bookmarks: this.lspi.getObjectRecord("bookmarks")
     }
-    this.handleTitleChange         = this.handleTitleChange.bind(this)
-    this.handleLinkChange          = this.handleLinkChange.bind(this)
-    this.handleBookmarkChange.bind = this.handleBookmarkChange.bind(this)
+    this.handleTitleChange     = this.handleTitleChange.bind(this)
+    this.handleLinkChange      = this.handleLinkChange.bind(this)
+    this.handleBookmarkChange  = this.handleBookmarkChange.bind(this)
+    this.handleClearBookmarks  = this.handleClearBookmarks.bind(this)
   }
 
   componentWillMount() {
@@ -58,6 +59,11 @@ class App extends Component {
       if (local !== null) this.setState({ bookmarks: local })
   }
 
+  handleClearBookmarks() {
+    this.lspi.deleteRecord("bookmarks")
+    this.fetchLocalAndSetState()
+  }
+
   render() {
     return (
       <div className="App">
@@ -83,6 +89,10 @@ class App extends Component {
         <br/><br/>
         <button id="submit-button" onClick={this.handleBookmarkChange}>
           Submit
+        </button>
+        <br/><br/>
+        <button id="clear-button" onClick={this.handleClearBookmarks}>
+          Clear All Bookmarks
         </button>
       </div>
     )
