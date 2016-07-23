@@ -7,7 +7,7 @@ class App extends Component {
   constructor() {
     super()
     this.storage = new Storage()
-    this.state = {
+    this.state   = {
       hello: "Hellooo"
     }
   }
