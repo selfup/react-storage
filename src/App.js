@@ -48,7 +48,7 @@ class App extends Component {
     return this.setState({ title: "", link: "" })
   }
 
-  fetchLocalAndSetState(fn) {
+  fetchLocalAndSetState() {
     const local = this.lspi.getObjectRecord("bookmarks")
       if (local === null) this.lspi.createEmptyRecordArray("bookmarks")
       if (local !== null) this.setState({ bookmarks: local })
