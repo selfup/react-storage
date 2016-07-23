@@ -5,13 +5,16 @@ import './App.css'
 class App extends Component {
   constructor() {
     super()
-    this.lspi = new Lspi()
+    this.lspi    = new Lspi()
     this.state   = {
       title: "",
       link: "",
       bookmark: {},
       bookmarks: this.lspi.getObjectRecord("bookmarks")
     }
+    this.handleTitleChange         = this.handleTitleChange.bind(this)
+    this.handleLinkChange          = this.handleLinkChange.bind(this)
+    this.handleBookmarkChange.bind = this.handleBookmarkChange.bind(this)
   }
 
   componentWillMount() {
@@ -26,7 +29,7 @@ class App extends Component {
     this.setState({ link: event.target.value })
   }
 
-  handleBookmarkChange() {
+  handleBookmarkChange(event) {
     this.setState({ bookmark:
       { title: this.state.title, link: this.state.link }
     }, () => {
@@ -63,7 +66,7 @@ class App extends Component {
           type="text"
           name="title"
           value={this.state.title}
-          onChange={this.handleTitleChange.bind(this)}
+          onChange={this.handleTitleChange}
         />
         <br/><br/>
         <h3>Link</h3>
@@ -71,12 +74,12 @@ class App extends Component {
           type="text"
           name="link"
           value={this.state.link}
-          onChange={this.handleLinkChange.bind(this)}
+          onChange={this.handleLinkChange}
         />
         <br/><br/>
         <button 
           id="submit-button" 
-          onClick={this.handleBookmarkChange.bind(this)}
+          onClick={this.handleBookmarkChange}
         >
           Submit
         </button>
