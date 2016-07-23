@@ -8,13 +8,15 @@ class App extends Component {
     super()
     this.lspi = new Lspi()
     this.state   = {
-      hello: "Hellooo"
+      title: "",
+      link: "",
+      bookmarks: []
     }
   }
 
   handleChange(event) {
-    this.setState({ hello: event.target.value })
-    this.lspi.setStringRecord("hello", event.target.value)
+    this.setState({ title: event.target.value })
+    this.lspi.setStringRecord("title", event.target.value)
   }
 
   componentWillMount() {
@@ -22,8 +24,8 @@ class App extends Component {
   }
 
   fetchLocalAndSetState(fn) {
-    const local = this.lspi.getStringRecord("hello")
-    if (local !== null) this.setState({ hello: local })
+    const local = this.lspi.getStringRecord("title")
+    if (local !== null) this.setState({ title: local })
   }
 
   render() {
@@ -34,14 +36,25 @@ class App extends Component {
           <h2>Welcome to React Storage!</h2>
         </div>
         <br/>
+        <h3>Title</h3>
         <input
           type="text"
-          value={this.state.hello}
+          name="title"
+          value={this.state.title}
           onChange={this.handleChange.bind(this)}
         />
-        <p className="App-intro">
-          Change the value and refresh :)
-        </p>
+        <br/><br/>
+        <h3>Link</h3>
+        <input
+          type="text"
+          name="link"
+          value={this.state.link}
+          onChange={this.handleChange.bind(this)}
+        />
+        <br/><br/>
+        <button id="submit-button">
+          Submit
+        </button>
       </div>
     )
   }
