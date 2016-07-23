@@ -89,12 +89,12 @@ class App extends Component {
           value={this.state.link}
           onChange={this.handleLinkChange}
         />
-        <br/><br/>
-        <button id="submit-button" onClick={this.handleBookmarkChange}>
+        <br/><br/><br/>
+        <button className="App-submit" onClick={this.handleBookmarkChange}>
           Submit
         </button>
         <br/><br/>
-        <button id="clear-button" onClick={this.handleClearBookmarks}>
+        <button className="App-clear" onClick={this.handleClearBookmarks}>
           Clear All Bookmarks
         </button>
       </div>
