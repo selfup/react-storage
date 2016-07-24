@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Button, FormControl } from 'react-bootstrap';
 import Lspi from 'lspi'
 import './App.css'
 
@@ -71,32 +72,32 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Welcome to React Storage!</h2>
+          <h3>Welcome to React Storage!</h3>
         </div>
         <br/>
-        <h3>Title</h3>
-        <input
-          type="text"
-          name="title"
-          value={this.state.title}
-          onChange={this.handleTitleChange}
-        />
-        <br/><br/>
-        <h3>Link</h3>
-        <input
-          type="text"
-          name="link"
-          value={this.state.link}
-          onChange={this.handleLinkChange}
-        />
-        <br/><br/><br/>
-        <button className="App-submit" onClick={this.handleBookmarkChange}>
-          Submit
-        </button>
-        <br/><br/>
-        <button className="App-clear" onClick={this.handleClearBookmarks}>
-          Clear All Bookmarks
-        </button>
+        <div className="container">
+          <h3>Title</h3>
+          <FormControl
+            type="text"
+            name="title"
+            value={this.state.title}
+            onChange={this.handleTitleChange}
+          />
+          <h3>Link</h3>
+          <FormControl
+            type="text"
+            name="title"
+            value={this.state.link}
+            onChange={this.handleLinkChange}
+          /><br/>
+          <Button bsStyle="success" bsSize="small" onClick={this.handleBookmarkChange}>
+            Submit
+          </Button>
+          <br/><br/>
+          <Button bsStyle="danger" bsSize="small" onClick={this.handleClearBookmarks}>
+            Clear All Bookmarks
+          </Button>
+        </div>
       </div>
     )
   }
