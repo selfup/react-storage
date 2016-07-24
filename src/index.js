@@ -5,7 +5,7 @@ import App from './App';
 import './index.css';
 
 ReactDOM.render(
-    <Router history={browserHistory}>
+  <Router history={browserHistory}>
     <Route path="/" component={App}>
     </Route>
   </Router>,
