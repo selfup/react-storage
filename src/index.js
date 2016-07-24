@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route } from 'react-router'
-import App from './App';
 import './index.css';
+import { Router, Route, hashhistory } from 'react-router'
+import App from './App';
 
 ReactDOM.render(
-  <Router>
+  <Router history={hashhistory}>
     <Route path="/" component={App}>
     </Route>
   </Router>,
