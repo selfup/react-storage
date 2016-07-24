@@ -5,6 +5,9 @@ import App from './App';
 import './index.css';
 
 ReactDOM.render(
-  <App />,
+    <Router history={browserHistory}>
+    <Route path="/" component={App}>
+    </Route>
+  </Router>,
   document.getElementById('root')
-);
+)

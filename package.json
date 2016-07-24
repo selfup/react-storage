@@ -16,5 +16,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject"
-  }
+  },
+  "homepage": "http://selfup.me/react-storage"
 }
