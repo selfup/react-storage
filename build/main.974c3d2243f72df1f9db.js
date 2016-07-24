@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -42417,4 +42417,4 @@
 
 /***/ }
 /******/ ])));
-//# sourceMappingURL=main.351e126e14614e880c63.js.map
+//# sourceMappingURL=main.974c3d2243f72df1f9db.js.map
