@@ -49,10 +49,9 @@ class App extends Component {
 
   updateBookmarks() {
     const bookmarks = [
-      Object.assign(
-        {}, this.state.bookmark, { /* no changes here */ }
-      ), ...this.lspi.getObjectRecord("bookmarks")      
-    ]
+      Object.assign({}, this.state.bookmark, { /* no changes here */ }),
+      ...this.lspi.getObjectRecord("bookmarks") // unshifts into the new array
+    ] 
     this.lspi.setRecord("bookmarks", bookmarks)
     this.fetchLocalAndSetState()
   }
