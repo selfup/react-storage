@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class Bookmarks extends Component {
   bookmarkLoader() {
-    return this.props.bookmarks.reverse().map((bookmark) => {
+    return this.props.bookmarks.map((bookmark) => {
       return (
         <div className="container" key={bookmark.id}>
           <h3>{bookmark.title}</h3>
