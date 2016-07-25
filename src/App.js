@@ -7,17 +7,14 @@ import './App.css'
 class App extends Component {
   constructor() {
     super()
-    
     this.lspi  = new Lspi()
-
     this.state = {
       id: "",
       title: "",
       link: "",
       bookmark: {},
-      bookmarks: this.lspi.getObjectRecord("bookmarks")
+      bookmarks: this.initialBookmarks()
     }
-    
     this.handleTitleChange    = this.handleTitleChange.bind(this)
     this.handleLinkChange     = this.handleLinkChange.bind(this)
     this.handleBookmarkChange = this.handleBookmarkChange.bind(this)
@@ -26,6 +23,11 @@ class App extends Component {
 
   componentWillMount() {
     this.fetchLocalAndSetState()
+  }
+
+  initialBookmarks() {
+    const local = this.lspi.getObjectRecord("bookmarks")
+      if (local === null) { return [] } else return local
   }
 
   handleTitleChange(event) {
@@ -47,11 +49,9 @@ class App extends Component {
 
   updateBookmarks() {
     const bookmarks = [
-      ...this.lspi.getObjectRecord("bookmarks"), 
-      Object.assign(
-        {}, this.state.bookmark, { /* no changes here */ }
-      )
-    ]
+      Object.assign({}, this.state.bookmark, { /* no changes here */ }),
+      ...this.lspi.getObjectRecord("bookmarks") // unshifts into the new array
+    ] 
     this.lspi.setRecord("bookmarks", bookmarks)
     this.fetchLocalAndSetState()
   }
@@ -68,6 +68,7 @@ class App extends Component {
 
   handleClearBookmarks() {
     this.lspi.deleteRecord("bookmarks")
+    this.lspi.createEmptyRecordArray("bookmarks")
     this.fetchLocalAndSetState()
   }
 
@@ -76,32 +77,28 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <h3>Welcome to React Storage!</h3>
-        </div>
-        <br/>
+        </div><br/>
         <div className="container">
           <h3>Title</h3>
           <FormControl
             type="text"
-            name="title"
             value={this.state.title}
             onChange={this.handleTitleChange}
           />
           <h3>Link</h3>
           <FormControl
             type="text"
-            name="title"
             value={this.state.link}
             onChange={this.handleLinkChange}
           /><br/>
           <Button bsStyle="success" bsSize="small" onClick={this.handleBookmarkChange}>
             Submit
-          </Button>
-          <br/><br/>
+          </Button><br/><br/>
           <Button bsStyle="danger" bsSize="small" onClick={this.handleClearBookmarks}>
             Clear All Bookmarks
           </Button>
         </div>
-        <div className="Bookmarks"><Bookmarks bookmarks={this.state.bookmarks}/></div>
+        <div><Bookmarks bookmarks={this.state.bookmarks}/></div>
       </div>
     )
   }
