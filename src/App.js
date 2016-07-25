@@ -53,6 +53,7 @@ class App extends Component {
       )
     ]
     this.lspi.setRecord("bookmarks", bookmarks)
+    this.fetchLocalAndSetState()
   }
 
   clearText() {
