@@ -15,13 +15,19 @@ class App extends Component {
       title: "",
       link: "",
       bookmark: {},
-      bookmarks: this.lspi.getObjectRecord("bookmarks")
+      bookmarks: this.initialBookmarks()
     }
     
     this.handleTitleChange    = this.handleTitleChange.bind(this)
     this.handleLinkChange     = this.handleLinkChange.bind(this)
     this.handleBookmarkChange = this.handleBookmarkChange.bind(this)
     this.handleClearBookmarks = this.handleClearBookmarks.bind(this)
+  }
+
+  initialBookmarks() {
+    const local = this.lspi.getObjectRecord("bookmarks")
+      if (local === null) return []
+      if (local !== null) return local
   }
 
   componentWillMount() {
