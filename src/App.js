@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, FormControl } from 'react-bootstrap';
 import Lspi from 'lspi'
-import Bookmarks from './Bookmarks.js'
+import Ideas from './Ideas.js'
 import './App.css'
 
 class App extends Component {
@@ -11,22 +11,22 @@ class App extends Component {
     this.state = {
       id: "",
       title: "",
-      link: "",
-      bookmark: {},
-      bookmarks: this.initialBookmarks()
+      body: "",
+      idea: {},
+      ideas: this.initialIdeas()
     }
     this.handleTitleChange    = this.handleTitleChange.bind(this)
-    this.handleLinkChange     = this.handleLinkChange.bind(this)
-    this.handleBookmarkChange = this.handleBookmarkChange.bind(this)
-    this.handleClearBookmarks = this.handleClearBookmarks.bind(this)
+    this.handleBodyChange     = this.handleBodyChange.bind(this)
+    this.handleIdeaChange = this.handleIdeaChange.bind(this)
+    this.handleClearIdeas = this.handleClearIdeas.bind(this)
   }
 
   componentWillMount() {
     this.fetchLocalAndSetState()
   }
 
-  initialBookmarks() {
-    const local = this.lspi.getObjectRecord("bookmarks")
+  initialIdeas() {
+    const local = this.lspi.getObjectRecord("ideas")
       if (local === null) { return [] } else return local
   }
 
@@ -34,41 +34,41 @@ class App extends Component {
     this.setState({ title: event.target.value })
   }
 
-  handleLinkChange(event) {
-    this.setState({ link: event.target.value })
+  handleBodyChange(event) {
+    this.setState({ body: event.target.value })
   }
 
-  handleBookmarkChange() {
-    this.setState({ bookmark:
-      { title: this.state.title, link: this.state.link, id: new Date() }
+  handleIdeaChange() {
+    this.setState({ idea:
+      { title: this.state.title, body: this.state.body, id: new Date() }
     }, () => {
       this.clearText()
-      this.updateBookmarks()
+      this.updateIdeas()
     })
   }
 
-  updateBookmarks() {
-    const bookmarks = [
-      Object.assign({}, this.state.bookmark, { /* no changes here */ }),
-      ...this.lspi.getObjectRecord("bookmarks") // unshifts into the new array
+  updateIdeas() {
+    const ideas = [
+      Object.assign({}, this.state.idea, { /* no changes here */ }),
+      ...this.lspi.getObjectRecord("ideas") // unshifts into the new array
     ] 
-    this.lspi.setRecord("bookmarks", bookmarks)
+    this.lspi.setRecord("ideas", ideas)
     this.fetchLocalAndSetState()
   }
 
   clearText() {
-    this.setState({ title: "", link: "" })
+    this.setState({ title: "", body: "" })
   }
 
   fetchLocalAndSetState() {
-    const local = this.lspi.getObjectRecord("bookmarks")
-      if (local === null) this.lspi.createEmptyRecordArray("bookmarks")
-      if (local !== null) this.setState({ bookmarks: local })
+    const local = this.lspi.getObjectRecord("ideas")
+      if (local === null) this.lspi.createEmptyRecordArray("ideas")
+      if (local !== null) this.setState({ ideas: local })
   }
 
-  handleClearBookmarks() {
-    this.lspi.deleteRecord("bookmarks")
-    this.lspi.createEmptyRecordArray("bookmarks")
+  handleClearIdeas() {
+    this.lspi.deleteRecord("ideas")
+    this.lspi.createEmptyRecordArray("ideas")
     this.fetchLocalAndSetState()
   }
 
@@ -85,20 +85,20 @@ class App extends Component {
             value={this.state.title}
             onChange={this.handleTitleChange}
           />
-          <h3>Link</h3>
+          <h3>Body</h3>
           <FormControl
             type="text"
-            value={this.state.link}
-            onChange={this.handleLinkChange}
+            value={this.state.body}
+            onChange={this.handleBodyChange}
           /><br/>
-          <Button bsStyle="success" bsSize="small" onClick={this.handleBookmarkChange}>
+          <Button bsStyle="success" bsSize="small" onClick={this.handleIdeaChange}>
             Submit
           </Button><br/><br/>
-          <Button bsStyle="danger" bsSize="small" onClick={this.handleClearBookmarks}>
-            Clear All Bookmarks
+          <Button bsStyle="danger" bsSize="small" onClick={this.handleClearIdeas}>
+            Clear All Ideas
           </Button>
         </div>
-        <div><Bookmarks bookmarks={this.state.bookmarks}/></div>
+        <div><Ideas ideas={this.state.ideas}/></div>
       </div>
     )
   }
