@@ -16,7 +16,7 @@ class Bookmarks extends Component {
     this.setState({ bookmarks: this.lspi.getObjectRecord("bookmarks") })
   }
 
-  bookmarks() {
+  bookmarkLoader() {
     this.state.bookmarks.map((bookmark) => {
       return (
         <div key={bookmark.id}>
@@ -30,7 +30,7 @@ class Bookmarks extends Component {
   render() {
     return(
       <div>
-        {this.bookmarks()}
+        {this.bookmarkLoader()}
       </div>
     )
   }
