@@ -8,18 +8,15 @@ class Bookmarks extends Component {
     this.lspi = new Lspi()
 
     this.state = {
-      bookmarks: {}
+      bookmarks: this.lspi.getObjectRecord("bookmarks")
     }
   }
 
-  componentWillMount() {
-    this.setState({ bookmarks: this.lspi.getObjectRecord("bookmarks") })
-  }
-
   bookmarkLoader() {
+    console.log(this.state.bookmarks)
     return this.state.bookmarks.map((bookmark) => {
       return (
-        <div key={bookmark.id}>
+        <div className="container" key={bookmark.id}>
           <h3>{bookmark.title}</h3>
           <p>{bookmark.link}</p>
         </div>
