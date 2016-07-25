@@ -74,6 +74,7 @@ class App extends Component {
 
   handleClearBookmarks() {
     this.lspi.deleteRecord("bookmarks")
+    this.lspi.createEmptyRecordArray("bookmarks")
     this.fetchLocalAndSetState()
   }
 
