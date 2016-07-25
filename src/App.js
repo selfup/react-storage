@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Bookmarks } from './Bookmarks.js'
 import { Button, FormControl } from 'react-bootstrap';
 import Lspi from 'lspi'
 import './App.css'
@@ -10,6 +11,7 @@ class App extends Component {
     this.lspi  = new Lspi()
 
     this.state = {
+      id: "",
       title: "",
       link: "",
       bookmark: {},
@@ -98,6 +100,7 @@ class App extends Component {
             Clear All Bookmarks
           </Button>
         </div>
+        <Bookmarks />
       </div>
     )
   }
