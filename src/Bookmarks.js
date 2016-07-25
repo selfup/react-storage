@@ -17,7 +17,7 @@ class Bookmarks extends Component {
   }
 
   bookmarkLoader() {
-    this.state.bookmarks.map((bookmark) => {
+    return this.state.bookmarks.map((bookmark) => {
       return (
         <div key={bookmark.id}>
           <h3>{bookmark.title}</h3>

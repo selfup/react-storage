@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Bookmarks } from './Bookmarks.js'
 import { Button, FormControl } from 'react-bootstrap';
 import Lspi from 'lspi'
+import Bookmarks from './Bookmarks.js'
 import './App.css'
 
 class App extends Component {
@@ -38,7 +38,7 @@ class App extends Component {
 
   handleBookmarkChange() {
     this.setState({ bookmark:
-      { title: this.state.title, link: this.state.link }
+      { title: this.state.title, link: this.state.link, id: new Date() }
     }, () => {
       this.clearText()
       this.updateBookmarks()
@@ -100,7 +100,7 @@ class App extends Component {
             Clear All Bookmarks
           </Button>
         </div>
-        <Bookmarks />
+        <div className="Bookmarks"><Bookmarks /></div>
       </div>
     )
   }
