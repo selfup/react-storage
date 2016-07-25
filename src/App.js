@@ -101,7 +101,7 @@ class App extends Component {
             Clear All Bookmarks
           </Button>
         </div>
-        <div className="Bookmarks"><Bookmarks /></div>
+        <div className="Bookmarks"><Bookmarks bookmarks={this.state.bookmarks}/></div>
       </div>
     )
   }
