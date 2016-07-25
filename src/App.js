@@ -24,14 +24,14 @@ class App extends Component {
     this.handleClearBookmarks = this.handleClearBookmarks.bind(this)
   }
 
+  componentWillMount() {
+    this.fetchLocalAndSetState()
+  }
+
   initialBookmarks() {
     const local = this.lspi.getObjectRecord("bookmarks")
       if (local === null) return []
       if (local !== null) return local
-  }
-
-  componentWillMount() {
-    this.fetchLocalAndSetState()
   }
 
   handleTitleChange(event) {
