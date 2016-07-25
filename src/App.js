@@ -15,10 +15,10 @@ class App extends Component {
       idea: {},
       ideas: this.initialIdeas()
     }
-    this.handleTitleChange    = this.handleTitleChange.bind(this)
-    this.handleBodyChange     = this.handleBodyChange.bind(this)
-    this.handleIdeaChange = this.handleIdeaChange.bind(this)
-    this.handleClearIdeas = this.handleClearIdeas.bind(this)
+    this.handleTitleChange = this.handleTitleChange.bind(this)
+    this.handleBodyChange  = this.handleBodyChange.bind(this)
+    this.handleIdeaChange  = this.handleIdeaChange.bind(this)
+    this.handleClearIdeas  = this.handleClearIdeas.bind(this)
   }
 
   componentWillMount() {
@@ -50,8 +50,8 @@ class App extends Component {
   updateIdeas() {
     const ideas = [
       Object.assign({}, this.state.idea, { /* no changes here */ }),
-      ...this.lspi.getObjectRecord("ideas") // unshifts into the new array
-    ] 
+      ...this.state.ideas 
+    ] /* unshifts <Object.assign> into Ideas Array clone */
     this.lspi.setRecord("ideas", ideas)
     this.fetchLocalAndSetState()
   }
