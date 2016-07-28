@@ -26,7 +26,7 @@ class App extends Component {
   }
 
   initialIdeas() {
-    const local = this.lspi.getObjectRecord("ideas")
+    const local = this.lspi.getRecord("ideas")
       if (local === null) { return [] } else return local
   }
 
@@ -48,10 +48,7 @@ class App extends Component {
   }
 
   updateIdeas() {
-    const ideas = [
-      Object.assign({}, this.state.idea, { /* no changes here */ }),
-      ...this.state.ideas 
-    ] /* unshifts <Object.assign> into Ideas Array clone */
+    const ideas = [Object.assign({}, this.state.idea, {}), ...this.state.ideas]
     this.lspi.setRecord("ideas", ideas)
     this.fetchLocalAndSetState()
   }
@@ -61,7 +58,7 @@ class App extends Component {
   }
 
   fetchLocalAndSetState() {
-    const local = this.lspi.getObjectRecord("ideas")
+    const local = this.lspi.getRecord("ideas")
       if (local === null) this.lspi.createEmptyRecordArray("ideas")
       if (local !== null) this.setState({ ideas: local })
   }
@@ -80,25 +77,31 @@ class App extends Component {
         </div><br/>
         <div className="container">
           <h3>Title</h3>
-          <FormControl
+          <FormControl className="App-idea-title"
             type="text"
             value={this.state.title}
             onChange={this.handleTitleChange}
           />
           <h3>Body</h3>
-          <FormControl
+          <FormControl className="App-idea-body"
             type="text"
             value={this.state.body}
             onChange={this.handleBodyChange}
           /><br/>
-          <Button bsStyle="success" bsSize="small" onClick={this.handleIdeaChange}>
-            Submit
-          </Button><br/><br/>
-          <Button bsStyle="danger" bsSize="small" onClick={this.handleClearIdeas}>
-            Clear All Ideas
-          </Button>
+          <Button 
+            bsStyle="success" 
+            bsSize="small" 
+            onClick={this.handleIdeaChange}
+            className="App-idea-submit"
+          >Submit</Button><br/><br/>
+          <Button 
+            bsStyle="danger" 
+            bsSize="small" 
+            onClick={this.handleClearIdeas}
+            className="App-idea-clear"  
+          >Clear All Ideas</Button><br/><br/>
         </div>
-        <div><Ideas ideas={this.state.ideas}/></div>
+        <div><Ideas ideas={this.state.ideas}/></div><br/>
       </div>
     )
   }
