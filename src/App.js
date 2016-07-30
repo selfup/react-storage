@@ -50,7 +50,8 @@ class App extends Component {
   handleQualityUpChange(props) {
     let ideas = this.state.ideas
     let currentIdea = ideas.find(idea => { return idea.id === props.id })
-    
+    ideas.forEach(idea => { if (idea.id === currentIdea.id) idea = currentIdea })
+    this.setState({ideas: ideas})
   }
 
   handleIdeaChange() {
