@@ -9,7 +9,7 @@ class Ideas extends Component {
         <div className="container Ideas-container" key={idea.id}>
           <h3>Title: {idea.title}</h3><hr/>
           <p>Body: {idea.body}</p><hr/>
-          <Quality idea={idea}/>
+          <Quality idea={idea} parentState={this.props.parentState}/>
         </div>
       )
     })

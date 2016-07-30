@@ -8,14 +8,6 @@ class App extends Component {
   constructor() {
     super()
     this.lspi  = new Lspi()
-    this.qualityUp = {
-      Swill: "Plausible",
-      Plausible: "Genius"
-    }
-    this.qualityDown = {
-      Plausible: "Swill",
-      Genius: "Plausible"
-    }
     this.state = {
       id: "",
       title: "",
@@ -24,10 +16,11 @@ class App extends Component {
       idea: {},
       ideas: this.initialIdeas()
     }
-    this.handleTitleChange = this.handleTitleChange.bind(this)
-    this.handleBodyChange  = this.handleBodyChange.bind(this)
-    this.handleIdeaChange  = this.handleIdeaChange.bind(this)
-    this.handleClearIdeas  = this.handleClearIdeas.bind(this)
+    this.handleTitleChange     = this.handleTitleChange.bind(this)
+    this.handleBodyChange      = this.handleBodyChange.bind(this)
+    this.handleIdeaChange      = this.handleIdeaChange.bind(this)
+    this.handleClearIdeas      = this.handleClearIdeas.bind(this)
+    this.fetchLocalAndSetState = this.fetchLocalAndSetState.bind(this)
   }
 
   componentWillMount() {
@@ -45,13 +38,6 @@ class App extends Component {
 
   handleBodyChange(event) {
     this.setState({ body: event.target.value })
-  }
-
-  handleQualityUpChange(props) {
-    let ideas = this.state.ideas
-    let currentIdea = ideas.find(idea => { return idea.id === props.id })
-    ideas.forEach(idea => { if (idea.id === currentIdea.id) idea = currentIdea })
-    this.setState({ideas: ideas})
   }
 
   handleIdeaChange() {
@@ -122,7 +108,12 @@ class App extends Component {
             className="App-idea-clear"  
           >Clear All Ideas</Button><br/><br/>
         </div>
-        <div><Ideas ideas={this.state.ideas}/></div><br/>
+        <div>
+          <Ideas 
+            ideas={this.state.ideas} 
+            parentState={this.fetchLocalAndSetState}
+          />
+        </div><br/>
       </div>
     )
   }
