@@ -12,13 +12,15 @@ class App extends Component {
       id: "",
       title: "",
       body: "",
+      quality: "",
       idea: {},
       ideas: this.initialIdeas()
     }
-    this.handleTitleChange = this.handleTitleChange.bind(this)
-    this.handleBodyChange  = this.handleBodyChange.bind(this)
-    this.handleIdeaChange  = this.handleIdeaChange.bind(this)
-    this.handleClearIdeas  = this.handleClearIdeas.bind(this)
+    this.handleTitleChange     = this.handleTitleChange.bind(this)
+    this.handleBodyChange      = this.handleBodyChange.bind(this)
+    this.handleIdeaChange      = this.handleIdeaChange.bind(this)
+    this.handleClearIdeas      = this.handleClearIdeas.bind(this)
+    this.fetchLocalAndSetState = this.fetchLocalAndSetState.bind(this)
   }
 
   componentWillMount() {
@@ -39,8 +41,13 @@ class App extends Component {
   }
 
   handleIdeaChange() {
-    this.setState({ idea:
-      { title: this.state.title, body: this.state.body, id: new Date() }
+    this.setState({ 
+      idea: { 
+        title: this.state.title, 
+        body: this.state.body, 
+        quality: "Swill", 
+        id: new Date() 
+      }
     }, () => {
       this.clearText()
       this.updateIdeas()
@@ -101,7 +108,12 @@ class App extends Component {
             className="App-idea-clear"  
           >Clear All Ideas</Button><br/><br/>
         </div>
-        <div><Ideas ideas={this.state.ideas}/></div><br/>
+        <div>
+          <Ideas 
+            ideas={this.state.ideas} 
+            parentState={this.fetchLocalAndSetState}
+          />
+        </div><br/>
       </div>
     )
   }

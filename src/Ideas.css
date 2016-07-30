@@ -4,3 +4,7 @@
   width: 50%;
   box-shadow: 2px 2px 5px #4866bf;
 }
+
+hr {
+  border-color: grey;
+}
