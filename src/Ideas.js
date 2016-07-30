@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Quality from './Quality.js'
 import './Ideas.css'
 
 class Ideas extends Component {
@@ -6,15 +7,16 @@ class Ideas extends Component {
     return this.props.ideas.map((idea) => {
       return (
         <div className="container Ideas-container" key={idea.id}>
-          <h3>{idea.title}</h3>
-          <p>{idea.body}</p>
+          <h3>Title: {idea.title}</h3><hr/>
+          <p>Body: {idea.body}</p><hr/>
+          <Quality idea={idea}/>
         </div>
       )
     })
   }
   
   render() {
-    return(
+    return (
       <div>
         {this.ideaLoader()}
       </div>

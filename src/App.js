@@ -8,10 +8,19 @@ class App extends Component {
   constructor() {
     super()
     this.lspi  = new Lspi()
+    this.qualityUp = {
+      Swill: "Plausible",
+      Plausible: "Genius"
+    }
+    this.qualityDown = {
+      Plausible: "Swill",
+      Genius: "Plausible"
+    }
     this.state = {
       id: "",
       title: "",
       body: "",
+      quality: "",
       idea: {},
       ideas: this.initialIdeas()
     }
@@ -38,9 +47,20 @@ class App extends Component {
     this.setState({ body: event.target.value })
   }
 
+  handleQualityUpChange(props) {
+    let ideas = this.state.ideas
+    let currentIdea = ideas.find(idea => { return idea.id === props.id })
+    
+  }
+
   handleIdeaChange() {
-    this.setState({ idea:
-      { title: this.state.title, body: this.state.body, id: new Date() }
+    this.setState({ 
+      idea: { 
+        title: this.state.title, 
+        body: this.state.body, 
+        quality: "Swill", 
+        id: new Date() 
+      }
     }, () => {
       this.clearText()
       this.updateIdeas()
